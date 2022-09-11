@@ -1,14 +1,12 @@
-name: 031-build-deploy-webapp-to-azure
+name: CI
 
-env:
-  AZURE_WEBAPP_NAME: github-actions-workflow    # set this to the name of your Azure Web App
-  DOTNET_VERSION: '6.0.x'                       # set this to the .NET Core version to use
-
+# Controls when the action will run. Triggers the workflow on push or pull request 
+# events but only for the master branch
 on:
   push:
-    branches: none
-    # - main
-  workflow_dispatch:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
