@@ -32,4 +32,4 @@ jobs:
         with:
           name: lab1
           path: |
-            ../**/bin
+            !../**/bin
