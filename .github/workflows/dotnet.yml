@@ -12,28 +12,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup dotnet ${{ matrix.dotnet-version }}
+      - name: Setup dotnet
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-      # You can test your matrix by printing the current dotnet version
-      - name: Display dotnet version
-        run: dotnet --version
-#      - name: 'Upload Artifact'
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: website
-#          path: /**
-#          if-no-files-found: error
-  
+          dotnet-version: '6.0.x'
+      - name: Install dependencies
+        run: dotnet restore
       - name: Build
-        run: |
-          dotnet  build
-      - uses: azure/webapps-deploy@v2
-        name: Deploy
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/Labs_curse2'
+        run: dotnet build
+      - name: Test with the dotnet CLI
+        run: dotnet test
       
         
