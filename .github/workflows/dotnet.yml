@@ -30,6 +30,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: lab1
+          name: labX
           path: |
-            lab?/bin/**/*.exe
+            lab?/bin
