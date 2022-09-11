@@ -31,4 +31,5 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           name: lab1
-          path: .\**\bin
+          path: |
+            ../**/bin
