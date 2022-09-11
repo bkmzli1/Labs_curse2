@@ -15,7 +15,7 @@ namespace Explorer.Avalonia.UI.Views
         {
             InitializeComponent();
 #if DEBUG
-            this.AttachDevTools();
+           
 #endif
 
             _mainVm = new MainViewModel();
