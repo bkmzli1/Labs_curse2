@@ -7,27 +7,6 @@ namespace Explorer.Shared.ViewModels
 {
     public class DirectoryTabItemViewModel : BaseViewModel
     {
-        #region Constructor
-
-        public DirectoryTabItemViewModel()
-        {
-            Name = "Мой компьютер";
-
-            OpenCommand = new DelegateCommand(Open);
-            CloseCommand = new DelegateCommand(OnClose);
-
-            foreach (var logicalDrive in Directory.GetLogicalDrives())
-                DirectoriesAndFiles.Add(new DirectoryViewModel(logicalDrive));
-        }
-
-        #endregion
-
-        #region Events
-
-        public event EventHandler Closed;
-
-        #endregion
-
         #region Public Properties
 
         public string FilePath { get; set; }
@@ -49,6 +28,27 @@ namespace Explorer.Shared.ViewModels
 
         #endregion
 
+        #region Events
+
+        public event EventHandler Closed;
+
+        #endregion
+
+        #region Constructor
+
+        public DirectoryTabItemViewModel()
+        {
+            Name = "Мой компьютер";
+
+            OpenCommand = new DelegateCommand(Open);
+            CloseCommand = new DelegateCommand(OnClose);
+
+            foreach (var logicalDrive in Directory.GetLogicalDrives())
+                DirectoriesAndFiles.Add(new DirectoryViewModel(logicalDrive));
+        }
+
+        #endregion
+
         #region Protected Methods
 
         #endregion
@@ -67,9 +67,14 @@ namespace Explorer.Shared.ViewModels
                 var directoryInfo = new DirectoryInfo(FilePath);
 
                 foreach (var directory in directoryInfo.GetDirectories())
+                {
                     DirectoriesAndFiles.Add(new DirectoryViewModel(directory));
+                }
 
-                foreach (var fileInfo in directoryInfo.GetFiles()) DirectoriesAndFiles.Add(new FileViewModel(fileInfo));
+                foreach (var fileInfo in directoryInfo.GetFiles())
+                {
+                    DirectoriesAndFiles.Add(new FileViewModel(fileInfo));
+                }
             }
         }
 

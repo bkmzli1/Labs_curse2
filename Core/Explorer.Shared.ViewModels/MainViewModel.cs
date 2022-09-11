@@ -1,11 +1,30 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Mime;
 
 namespace Explorer.Shared.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        #region Public Properties
+
+        public ObservableCollection<DirectoryTabItemViewModel> DirectoryTabItems { get; set; } =
+            new ObservableCollection<DirectoryTabItemViewModel>();
+
+        public DirectoryTabItemViewModel CurrentDirectoryTabItem { get; set; }
+
+        #endregion
+
+        #region Commands
+
+        public DelegateCommand AddTabItemCommand { get; }
+
+        #endregion
+
+        #region Events
+
+        #endregion
+
         #region Constructor
 
         public MainViewModel()
@@ -17,16 +36,11 @@ namespace Explorer.Shared.ViewModels
 
         #endregion
 
-        #region Commands
-
-        public DelegateCommand AddTabItemCommand { get; }
-
-        #endregion
-
         #region Public Methods
 
         public void ApplicationClosing()
         {
+            
         }
 
         #endregion
@@ -37,19 +51,6 @@ namespace Explorer.Shared.ViewModels
         {
             AddTabItemViewModel();
         }
-
-        #endregion
-
-        #region Public Properties
-
-        public ObservableCollection<DirectoryTabItemViewModel> DirectoryTabItems { get; set; } =
-            new ObservableCollection<DirectoryTabItemViewModel>();
-
-        public DirectoryTabItemViewModel CurrentDirectoryTabItem { get; set; }
-
-        #endregion
-
-        #region Events
 
         #endregion
 
@@ -65,9 +66,12 @@ namespace Explorer.Shared.ViewModels
             CurrentDirectoryTabItem = vm;
         }
 
-        private void Vm_Closed(object sender, EventArgs e)
+        private void Vm_Closed(object sender, System.EventArgs e)
         {
-            if (sender is DirectoryTabItemViewModel directoryTabItemViewModel) CloseTab(directoryTabItemViewModel);
+            if (sender is DirectoryTabItemViewModel directoryTabItemViewModel)
+            {
+                CloseTab(directoryTabItemViewModel);
+            }
         }
 
         private void CloseTab(DirectoryTabItemViewModel directoryTabItemViewModel)
