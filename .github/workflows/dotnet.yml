@@ -10,42 +10,30 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
   
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
 
-      - name: Set up dependency caching for faster builds
-        uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      - name: Restore NuGet packages
+        run: nuget restore Labs_curse2.sln
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+      - name: Build the Solution
+        run: msbuild Labs_curse2.sln  /p:Configuration=Release
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'Development'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+#      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
