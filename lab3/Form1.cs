@@ -18,7 +18,16 @@ namespace lab3
             var red = trackBarRed.Value;
             var green = trackBarGreen.Value;
             var blue = trackBarBlue.Value;
-            var color = Color.FromArgb(red, green, blue);
+            var option = trackBar12.Value;
+            var color = Color.FromArgb(option,red, green, blue);
+            panelColor.BackColor = color;
+        }
+
+
+        private void trackBar21_Scroll(object sender, EventArgs e)
+        {
+            var rgb = trackBar21.Value;
+            var color = Color.FromArgb(rgb, rgb, rgb);
             panelColor.BackColor = color;
         }
     }
