@@ -1,6 +1,6 @@
 ﻿namespace Explorer.WPF.UI
 {
-    public partial class DirectoryTabItem 
+    public partial class DirectoryTabItem
     {
         public DirectoryTabItem()
         {

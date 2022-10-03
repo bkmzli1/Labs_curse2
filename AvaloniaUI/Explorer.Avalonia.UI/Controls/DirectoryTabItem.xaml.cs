@@ -7,7 +7,7 @@ namespace Explorer.Avalonia.UI
     {
         public DirectoryTabItem()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void InitializeComponent()

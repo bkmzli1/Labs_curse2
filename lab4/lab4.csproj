@@ -4,11 +4,11 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{FEA6FBE8-39E2-4979-B569-B36B8713CF4B}</ProjectGuid>
+        <ProjectGuid>{BDC7658C-AA96-4BA5-999A-FF4CC8E84DCC}</ProjectGuid>
         <OutputType>WinExe</OutputType>
-        <RootNamespace>lab4</RootNamespace>
+        <RootNamespace>WindowsFormsApp1</RootNamespace>
         <AssemblyName>lab4</AssemblyName>
-        <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <Deterministic>true</Deterministic>
@@ -54,6 +54,9 @@
         </Compile>
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <EmbeddedResource Include="Form1.resx">
+            <DependentUpon>Form1.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -9,6 +9,8 @@ namespace Explorer.Avalonia.UI.Views
 {
     public class MainWindow : Window
     {
+        private readonly MainViewModel _mainVm;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -26,16 +28,12 @@ namespace Explorer.Avalonia.UI.Views
             AvaloniaXamlLoader.Load(this);
         }
 
-        private readonly MainViewModel _mainVm;
-        
         private void CloseButton_OnClick(object sender, RoutedEventArgs e)
         {
             _mainVm.ApplicationClosing();
 
             if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-            {
                 desktopLifetime.Shutdown();
-            }
         }
 
         private void ExpandButton_OnClick(object sender, RoutedEventArgs e)

@@ -12,7 +12,5 @@ namespace Explorer.Shared.ViewModels
         {
             FullName = fileInfo.FullName;
         }
-
-        
     }
 }
